@@ -1,6 +1,6 @@
 import express from "express"
 
-import helmat from "helmet"
+import helmet from "helmet"
 import morgan from "morgan"
 import cors from "cors"
 
@@ -10,6 +10,7 @@ import { sql } from "./config/db.js"
 
 import productRoute from "./routes/productRoute.js"
 
+import {aj} from "./lib/arcjet.js"
 
 dotenv.config()
 
@@ -18,9 +19,46 @@ const PORT = process.env.PORT || 3000
 
 app.use(express.json())
 app.use(cors())
-app.use(helmat())
+app.use(helmet())
 app.use(morgan("dev"))
 
+app.use(async (req,res,next)=>{
+    try {
+        const decision = await aj.protect(req,{
+            requested:1
+        })
+
+        if(decision.isDenied()){
+            if(decision.reason.isRateLimit()){
+                res.status(429).json({
+                    error:"Too Many Requests"
+                })
+            }else if(decision.reason.isBot()){
+                res.status(403).json({
+                    error:"No bots allowed"
+                })
+            }else{
+                res.status(403).json({
+                    error:"Forbidden"   
+                })
+            }
+            return
+        }
+
+
+        if(decision.results.some((result)=>result.reason.isBot() && result.reason.isSpoofed())){
+            res.status(403).json({
+                error:"Spoofed bot detected"
+            })
+            return
+        }
+        next()
+    } catch (err) {
+console.log("Arcjet Error",err)
+next(err)
+        
+    }
+})
 app.use("/product",productRoute)
 
 async function initDB(){
@@ -46,7 +84,7 @@ async function initDB(){
 
 initDB().then(()=>{
     app.listen(PORT,()=>{
-    console.log(`Serer is Runnig on Port: ${PORT} `)
+    console.log(`Server is Runnig on Port: ${PORT} `)
 })
 })
 
