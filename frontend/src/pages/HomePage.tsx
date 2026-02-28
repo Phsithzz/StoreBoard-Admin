@@ -4,6 +4,7 @@ import { PackageIcon, PlusCircleIcon, RefreshCwIcon } from "lucide-react";
 
 import ProductCardSkeleton from "../components/ProductCardSkeleton";
 import ProductCard from "../components/ProductCard";
+import AddProductModal from "../components/AddProductModal";
 
 const HomePage = () => {
   const { products, loading, error, fetchProducts } = useProductStore();
@@ -15,7 +16,15 @@ const HomePage = () => {
   return (
     <main className="mx-auto max-w-6xl px-4 py-8">
       <div className="flex justify-between items-center mb-8">
-        <button className="btn btn-primary">
+        <button 
+      onClick={() => {
+  const modal = document.getElementById(
+    "add_product_modal"
+  ) as HTMLDialogElement | null;
+
+  modal?.showModal();
+}}
+        className="btn btn-primary">
           <PlusCircleIcon className="size-5 mr-2 " />
           Add Product
         </button>
@@ -24,7 +33,7 @@ const HomePage = () => {
           <RefreshCwIcon className="size-5 " />
         </button>
       </div>
-
+      <AddProductModal />
       {error && <div className="alert alert-error mb-8">{error}</div>}
       {products.length === 0 && !loading && (
         <div className="flex flex-col justify-center items-center h-96 space-y-4">

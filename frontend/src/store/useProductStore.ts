@@ -31,8 +31,9 @@ export const useProductStore = create<productType.ProductStore>((set, get) => ({
       const { formData } = get();
       await axios.post(`${BASE_URL}/products`, formData);
       await get().fetchProducts();
-      await get().resetForm();
+      get().resetForm();
       toast.success("Product add succesfully");
+      
     } catch (err) {
       console.log("Error in addProduct", err);
       toast.error("Something went wrong");
