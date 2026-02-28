@@ -9,10 +9,17 @@ const ProductPage = () => {
         fetchProducts()
     },[fetchProducts])
 
-    console.log(products)
+  if (loading) return <p>Loading...</p>
+  if (error) return <p>{error}</p>
 
   return (
-    <div>ProductPage</div>
+    <div>
+      {products.map((item) => (
+        <div key={item.id}>
+          {item.name} - {item.price}
+        </div>
+      ))}
+    </div>
 
 
 

@@ -2,7 +2,8 @@ import axios from "axios";
 
 import { create } from "zustand";
 
-import * as productType from "../types/productType"
+import type * as productType from "../types/productType"
+import type { ApiResponse } from "../types/api";
 
 const BASE_URL = "http://localhost:3000";
 
@@ -18,7 +19,7 @@ export const useProductStore = create<productType.ProductStore>((set, get) => ({
     
     try {
 
-      const res = await axios.get<{data:productType.Product[]}>(`${BASE_URL}/products`);
+      const res = await axios.get<ApiResponse<productType.Product[]>>(`${BASE_URL}/products`);
       set({ products: res.data.data, error: null });
 
     } catch (err) {
