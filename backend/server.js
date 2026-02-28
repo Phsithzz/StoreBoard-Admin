@@ -59,7 +59,7 @@ next(err)
         
     }
 })
-app.use("/product",productRoute)
+app.use("/products",productRoute)
 
 async function initDB(){
     try {
