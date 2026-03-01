@@ -187,7 +187,7 @@ const ProductPage = () => {
         <div className="modal-box border-6 border-black shadow-[6px_6px_0px_black]">
           <h3 className="font-bold text-lg mb-4">Delete Product</h3>
           <p className="mb-6">
-            Are you sure you want to delete this product? 
+            Are you sure you want to delete {" "} <span className="font-semibold">{formData.name}</span>
           </p>
 
           <div className="modal-action">
