@@ -23,7 +23,7 @@ export const getAllProducts = async (req, res) => {
 export const createProduct = async (req, res) => {
   const { name, price, image } = req.body;
 
-  if (!name || !price || !image) {
+if (!name || price === undefined || !image) {
     return res.status(400).json({
       success: false,
       message: "required Data",
@@ -50,14 +50,19 @@ export const createProduct = async (req, res) => {
 };
 
 export const getProduct = async (req, res) => {
-  const { id } = req.params;
+ const id = Number(req.params.id);
   try {
     const product = await sql`
         SELECT * 
         FROM products 
         WHERE id = ${id}
         `;
-
+if (product.length === 0) {
+  return res.status(404).json({
+    success: false,
+    message: "Product not found",
+  });
+}
     res.status(200).json({
       success: true,
       data: product[0],
@@ -72,7 +77,7 @@ export const getProduct = async (req, res) => {
 };
 
 export const updateProduct = async (req, res) => {
-  const { id } = req.params;
+const id = Number(req.params.id);
   const { name, price, image } = req.body;
   try {
     const updateProduct = await sql`
@@ -103,7 +108,7 @@ export const updateProduct = async (req, res) => {
 };
 
 export const deleteProduct = async (req, res) => {
-  const { id } = req.params;
+const id = Number(req.params.id);
   try {
     const deleteProduct = await sql`
         DELETE 
