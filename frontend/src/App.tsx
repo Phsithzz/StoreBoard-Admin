@@ -20,7 +20,10 @@ const App = () => {
     <Route path="/product/:id" element={<ProductPage/>}/>
     
   </Routes>
-    <Toaster/>
+    <Toaster
+     position="top-right"
+  reverseOrder={false}
+    />
 </div>
 
   </BrowserRouter>
