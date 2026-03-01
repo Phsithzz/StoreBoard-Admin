@@ -23,7 +23,7 @@ const AddProductModal = () => {
      "
       >
         <form method="dialog">
-          <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+          <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 text-2xl">
             X
           </button>
         </form>
@@ -32,7 +32,6 @@ const AddProductModal = () => {
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="grid gap-6">
-
             <div className="form-control">
               <label className="label label-text text-base font-semibold">
                 Product Name
@@ -51,7 +50,8 @@ const AddProductModal = () => {
                   placeholder="Enter product Name"
                   className="input outline-none w-full  py-4 pr-10
                             focus:input-primary transition-colors
-                            duration-200   focus:border-4
+                            duration-200  border-4 border-black
+    shadow-[4px_4px_0px_black]
                             "
                   value={formData.name}
                   onChange={(e) =>
@@ -76,9 +76,9 @@ const AddProductModal = () => {
                 <input
                   type="text"
                   inputMode="decimal"
-                
                   placeholder="0.00"
-                  className="input  w-full  py-4 focus:border-4
+                  className="input  w-full  py-4  border-4 border-black
+    shadow-[4px_4px_0px_black]
                             focus:input-primary transition-colors
                             duration-200 appearance-none outline-none
                             "
@@ -107,8 +107,9 @@ const AddProductModal = () => {
                   type="text"
                   placeholder="http://example.com/image.jpg"
                   className="input input-bordered w-full py-4 
-                            focus:input-primary transition-colors
-                            duration-200 outline-none focus:border-4
+                            focus:input-primary transition-colors 
+                            duration-200 outline-none  border-4 border-black
+    shadow-[4px_4px_0px_black]
                             "
                   value={formData.image}
                   onChange={(e) =>
@@ -139,7 +140,8 @@ const AddProductModal = () => {
                   !formData.image ||
                   loading
                 }
-                className="btn btn-primary min-w-30"
+                className="btn btn-accent btn-outline border-4 border-black
+        shadow-[4px_4px_0px_black]  min-w-30"
               >
                 {loading ? (
                   <span className="loading loading-spinner loading-sm" />

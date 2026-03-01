@@ -31,13 +31,18 @@ const ProductCard = ({product}:ProductCardProps) => {
             <div className="card-actions justify-end mt-4">
 
                 <Link to={`/product/${product.id}`} 
-                className="btn btn-sm btn-info btn-outline">
+                className="btn btn-sm btn-accent btn-outline border-2 border-black
+    shadow-[2px_2px_0px_black]">
                     <EditIcon className="size-4"/>
                 </Link>
 
                 <button 
                  onClick={()=>deleteProduct(product.id)}
-                className="btn btn-sm btn-error btn-outline">
+                className="btn btn-sm bg-red-500 text-white btn-outline
+                 border-2 border-black shadow-[2px_2px_0px_black]
+                 transition-all ease-in 
+                 hover:bg-red-400 
+                 ">
                     <TrashIcon 
                    
                     className="size-4"/>

@@ -10,6 +10,7 @@ const Navbar = () => {
 
             <div className="flex-1 lg-flex-none">
                  <Link to="/"
+                 onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
                  className="hover:opacity-80 transition-opacity"
                  >
                     <div className="flex items-center gap-2">
@@ -18,7 +19,7 @@ const Navbar = () => {
                         className="font-semibold font-mono tracking-widest text-2xl
                         bg-clip-text text-transparent bg-linear-to-r from-primary to-secondary"
                         >
-                        PRODUCTSTORE
+                        StoreBoard
                         </span>
                     </div>
                  </Link>

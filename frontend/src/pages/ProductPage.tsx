@@ -59,13 +59,16 @@ const ProductPage = () => {
           <img
             src={currentProduct?.image || imageUrlError}
             alt={currentProduct?.name || "product image error"}
-            className="size-full object-cover"
+            className="size-full object-cover border-8 border-black
+ "
           />
         </div>
 
         <div
           className="
-        card bg-base-100 shadow-lg"
+          border-6 border-black
+    shadow-[6px_6px_0px_black]
+        card bg-base-100 "
         >
           <div
             className="
@@ -89,7 +92,8 @@ const ProductPage = () => {
                   placeholder="Enter product name"
                   className="input 
               outline-none
-               focus:border-4 w-full"
+               border-4 border-black
+    shadow-[4px_4px_0px_black] w-full"
                   value={formData.name}
                   onChange={(e) =>
                     setFormData({ ...formData, name: e.target.value })
@@ -107,7 +111,8 @@ const ProductPage = () => {
                   placeholder="0.00"
                   className="input 
               outline-none
-              focus:border-4 w-full"
+              border-4 border-black
+    shadow-[4px_4px_0px_black] w-full"
                   value={formData.price}
                   onChange={(e) =>
                     setFormData({ ...formData, price: e.target.value })
@@ -124,7 +129,8 @@ const ProductPage = () => {
                   placeholder="http://example.com/image.jpg"
                   className="input 
               outline-none
-             focus:border-4 w-full"
+             border-4 border-black
+    shadow-[4px_4px_0px_black] w-full"
                   value={formData.image}
                   onChange={(e) =>
                     setFormData({ ...formData, image: e.target.value })
@@ -141,7 +147,9 @@ const ProductPage = () => {
                       ) as HTMLDialogElement
                     )?.showModal()
                   }
-                  className="btn btn-error"
+                  className="btn bg-red-500 border-4 border-black
+    shadow-[4px_4px_0px_black] text-white transition-all ease-in 
+                 hover:bg-red-400"
                 >
                   <Trash2Icon className="size-4 mr-2" />
                   Delete Product
@@ -149,7 +157,8 @@ const ProductPage = () => {
 
                 <button
                   type="submit"
-                  className="btn btn-primary"
+                  className="btn btn-accent btn-outline border-4 border-black
+    shadow-[4px_4px_0px_black]"
                   disabled={
                     loading ||
                     !formData.name ||

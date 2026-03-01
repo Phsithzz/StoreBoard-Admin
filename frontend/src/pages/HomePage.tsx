@@ -24,8 +24,8 @@ const HomePage = () => {
 
   modal?.showModal();
 }}
-        className="btn btn-primary border-3 border-white
-        shadow-[3px_3px_0px_white] rounded-md
+        className="btn btn-accent btn-outline border-4 border-black
+        shadow-[4px_4px_0px_black] 
  ">
           <PlusCircleIcon className="size-5 mr-2    " />
           Add Product
