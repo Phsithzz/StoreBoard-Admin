@@ -6,7 +6,7 @@ import * as productType from "../types/productType";
 import type { ApiResponse } from "../types/api";
 import toast from "react-hot-toast";
 
-const BASE_URL = "https://storeboard.onrender.com";
+const BASE_URL = import.meta.env.VITE_API_URL;
 
 export const useProductStore = create<productType.ProductStore>((set, get) => ({
   products: [],
