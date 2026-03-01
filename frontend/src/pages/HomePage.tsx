@@ -7,7 +7,7 @@ import ProductCard from "../components/ProductCard";
 import AddProductModal from "../components/AddProductModal";
 
 const HomePage = () => {
-  const { products, loading, error, fetchProducts } = useProductStore();
+  const { products, loading, error, fetchProducts ,resetForm} = useProductStore();
 
   useEffect(() => {
     fetchProducts();
@@ -18,6 +18,7 @@ const HomePage = () => {
       <div className="flex justify-between items-center mb-8">
         <button 
       onClick={() => {
+        resetForm(); 
   const modal = document.getElementById(
     "add_product_modal"
   ) as HTMLDialogElement | null;
