@@ -3,7 +3,7 @@ export interface Product {
   id: number;
   name: string;
   image: string;
-  price: string;
+  price: number;
   create_at: string;
 }
 
