@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 import type { Product } from "../types/productType"
 import { EditIcon, TrashIcon } from "lucide-react"
 import { useProductStore } from "../store/useProductStore"
-
+import imageUrlError from "../assets/images/imageUrlError.jpg";
 interface ProductCardProps{
     product:Product
 }
@@ -14,7 +14,12 @@ const ProductCard = ({product}:ProductCardProps) => {
     shadow-[6px_6px_0px_black] ">
 
         <figure className="relative pt-[56.25%]">
-            <img src={product.image} alt={product.name} 
+            <img
+              src={product?.image || imageUrlError}
+            alt={product?.name || "product image error"}
+              onError={(e) => {
+    (e.currentTarget as HTMLImageElement).src = imageUrlError;
+  }}
             className="absolute top-0 left-0 w-full h-full object-cover"/>
         </figure>
 

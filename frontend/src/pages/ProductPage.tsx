@@ -59,6 +59,9 @@ const ProductPage = () => {
           <img
             src={currentProduct?.image || imageUrlError}
             alt={currentProduct?.name || "product image error"}
+                   onError={(e) => {
+    (e.currentTarget as HTMLImageElement).src = imageUrlError;
+  }}
             className="size-full object-cover border-8 border-black
  "
           />
