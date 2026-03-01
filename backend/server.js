@@ -18,8 +18,14 @@ const app = express()
 const PORT = process.env.PORT || 3000
 
 app.use(express.json())
-app.use(cors())
-app.use(helmet())
+app.use(cors(
+    {
+        origin: "https://your-frontend-url.vercel.app"
+    }
+))
+app.use(helmet({
+    contentSecurityPolicy:false
+}))
 app.use(morgan("dev"))
 
 app.use(async (req,res,next)=>{
